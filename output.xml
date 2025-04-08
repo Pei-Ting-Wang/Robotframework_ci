@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.9.6 on darwin)" generated="2025-04-08T11:23:50.479441" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Lmp" source="/Users/penny_p_wang/Desktop/robotframework/test_lmp.robot">
+<kw name="Open Browser" owner="SeleniumLibrary" type="SETUP">
+<msg time="2025-04-08T11:23:50.581504" level="INFO">Opening browser 'Chrome' to base url 'https://signin-int.visionone.trendmicro.com/'.</msg>
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2025-04-08T11:23:50.581343" elapsed="2.928511"/>
+</kw>
+<test id="s1-t1" name="Test Case For Itops" line="36">
+<kw name="Login For Itops">
+<kw name="Go To" owner="SeleniumLibrary">
+<msg time="2025-04-08T11:23:53.511289" level="INFO">Opening url 'https://signin-int.visionone.trendmicro.com/'</msg>
+<arg>${URL}</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<status status="PASS" start="2025-04-08T11:23:53.511196" elapsed="0.034247"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath://input[@data-test="_IAM_USERNAME_INPUT_"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-08T11:23:53.545600" elapsed="0.846134"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-08T11:23:54.392289" level="INFO">Typing text 'ol_t2_disti_penny@mailsac.com' into text field 'xpath://input[@data-test="_IAM_USERNAME_INPUT_"]'.</msg>
+<arg>xpath://input[@data-test="_IAM_USERNAME_INPUT_"]</arg>
+<arg>${username}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-08T11:23:54.391998" elapsed="0.095785"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2025-04-08T11:23:54.488011" level="INFO">Clicking button 'xpath=//button[text()='Continue']'.</msg>
+<arg>xpath=//button[text()='Continue']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-08T11:23:54.487899" elapsed="0.048747"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>css:[data-test="_IAM_PASSWORD_INPUT_"]</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2025-04-08T11:23:54.536790" elapsed="0.853274"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2025-04-08T11:23:55.390696" level="INFO">Typing text 'V1MSP@qa' into text field 'xpath://input[@data-test="_IAM_PASSWORD_INPUT_"]'.</msg>
+<arg>xpath://input[@data-test="_IAM_PASSWORD_INPUT_"]</arg>
+<arg>${password}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2025-04-08T11:23:55.390363" elapsed="0.045861"/>
+</kw>
+<arg>${USERNAME_ITOPS}</arg>
+<arg>${PASSWORD_ITOPS}</arg>
+<status status="PASS" start="2025-04-08T11:23:53.510935" elapsed="1.925379"/>
+</kw>
+<status status="PASS" start="2025-04-08T11:23:53.510441" elapsed="1.926009"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2025-04-08T11:23:55.436770" elapsed="0.093848"/>
+</kw>
+<status status="PASS" start="2025-04-08T11:23:50.480613" elapsed="5.050073"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Test Lmp" id="s1" pass="1" fail="0" skip="0">Test Lmp</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
