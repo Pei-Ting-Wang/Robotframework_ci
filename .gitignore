@@ -1,0 +1,33 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Robot Framework output files
+output.xml
+log.html
+report.html
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Environment files
+.env
+*.env
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+*.log
+*.tmp
+*.cache
