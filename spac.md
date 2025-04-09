@@ -1,54 +1,31 @@
-# 根據以下內容寫成robotframework python語言 搭配 selenium
+## 測試案例：Trend Vision One for Service Providers 更新流程
 
-# 1. 原始playwright typescript 測試案例
-'''
-import { test, expect } from '@playwright/test';
+1. 開啟瀏覽器並進入以下網址：  
+   `https://ie85v.login-tmp.trendmicro.com/authenticate/operator/false`
+2. 在帳號欄位輸入：`Admin`
+3. 在密碼欄位輸入：`V1MSP@qa`
+4. 點選登入按鈕。
+5. 登入後，點選 `view detail` 按鈕。
+6. 確認彈出視窗內容為：  
+   ```
+   Trend Vision One for Service Providers offers valuable insight into your customers' security posture, discovers and prioritizes asset vulnerabilities, and minimizes their organizational risk exposure. With advanced XDR capabilities, this unified solution enables incident response and threat hunting using detection models, event correlation, and data analysis. Trend Vision One for Service Providers also enables automation and management of detection and response processes seamlessly across the endpoint, data, identity, mobile, cloud, network, and email layers of your customers' environments.
+   ```
+7. 點選 `update now` 按鈕。
+8. 確認彈出視窗內容為：  
+   ```
+   Update to Trend Vision One for Service Providers  
+   By continuing with the update, you gain access to Trend Vision One for Service Providers.
 
-test('lmpForItops', async ({ page }) => {
-  await page.goto('https://signin-int.visionone.trendmicro.com/');
-  await page.locator('[data-test="_IAM_USERNAME_INPUT_"]').dblclick();
-  await page.locator('[data-test="_IAM_USERNAME_INPUT_"]').fill('ol_t2_disti_penny@mailsac.com');
-  await page.locator('[data-test="_IAM_SIGN_IN_BTN_"]').click();
-  await page.locator('[data-test="_IAM_PASSWORD_INPUT_"]').dblclick();
-  await page.locator('[data-test="_IAM_PASSWORD_INPUT_"]').fill('V1MSP@qa');
-  await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: 'Close' }).click();
-  await page.locator('#uic_userinfo_4').click();
-  await expect(page.locator('div').filter({ hasText: /^Usage and Billing$/ })).toBeVisible();
-  await page.locator('span').filter({ hasText: 'Usage and Billing' }).first().click();;
-  await expect(page.locator('[data-test="NAV_ICON_Licensing_Management_Platform"]')).toContainText('Billing Reports');
-});
+   Before updating, please note the following:
 
-test('lmpForMspc', async ({ page }) => {
-  await page.goto('https://signin-int.visionone.trendmicro.com/');
-  await page.locator('[data-test="_IAM_USERNAME_INPUT_"]').dblclick();
-  await page.locator('[data-test="_IAM_USERNAME_INPUT_"]').fill('beta_de_reports@mailsac.com');
-  await page.locator('[data-test="_IAM_SIGN_IN_BTN_"]').click();
-  await page.locator('[data-test="_IAM_PASSWORD_INPUT_"]').dblclick();
-  await page.locator('[data-test="_IAM_PASSWORD_INPUT_"]').fill('V1MSP@qa');
-  await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: 'Close' }).click();
-  await page.locator('#uic_userinfo_4').click();
-  await expect(page.locator('div').filter({ hasText: /^Usage and Billing$/ })).toBeVisible();
-  await page.locator('span').filter({ hasText: 'Usage and Billing' }).first().click();;
-  await expect(page.locator('[data-test="NAV_ICON_Licensing_Management_Platform"]')).toContainText('Licensing Management Platform');
-});
+   - The update is irreversible.
+   - You must update your administrator account to email address format.
+   - Other administrator accounts must update their accounts to email address format on their next sign-in to Licensing Management Platform.
+   - Your existing Remote Manager and Licensing Management Platform are embedded in the Trend Vision One for Service Providers console.
+   - The Trend Vision One for Service Providers console appears in dark mode and is available in English only.
+   ```
+9. 測試完畢。
 
-test('verifyPartnerOnboardingDateIsVisible', async ({ page }) => {
-  await page.goto('https://signin-int.visionone.trendmicro.com/');
-  await page.locator('[data-test="_IAM_USERNAME_INPUT_"]').fill('Beta_JP@mailsac.com');
-  await page.locator('[data-test="_IAM_SIGN_IN_BTN_"]').click();
-  await page.locator('[data-test="_IAM_PASSWORD_INPUT_"]').click();
-  await page.locator('[data-test="_IAM_PASSWORD_INPUT_"]').fill('V1MSP@qa');
-  await page.getByRole('button', { name: 'Continue' }).click();
-  await page.getByRole('button', { name: 'Sign in' }).click();
-  await page.getByRole('button', { name: 'Close' }).click();
-  await page.getByRole('button', { name: 'Close' }).click();
-  await page.locator('div').filter({ hasText: /^Usage and Billing$/ }).click();
-  await page.locator('[data-test="NAV_ICON_Licensing_Management_Platform"]').click();
-  await page.locator('iframe[name="__ACM_APP_CONTAINER"]').contentFrame().locator('iframe[name="loginIframe"]').contentFrame().getByRole('link', { name: 'active partner(s)' }).click();
-  await expect(page.locator('iframe[name="__ACM_APP_CONTAINER"]').contentFrame().locator('iframe[name="loginIframe"]').contentFrame().locator('thead')).toContainText('Onboarding Date');
-});
+## GitHub Actions 工作流程：Playwright 測試
 
-'''
-# 2. 請將上述的locator 轉換時都使用xpath去轉換
+### 在 Push/Pull Request 時執行測試
